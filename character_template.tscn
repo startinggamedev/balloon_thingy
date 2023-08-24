@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c22xkf8kvy3fj"]
+
+[ext_resource type="PackedScene" uid="uid://x1i5bx3nxjxx" path="res://physics_template.tscn" id="1_1gmyd"]
+[ext_resource type="Script" path="res://character_template.gd" id="2_pldcg"]
+
+[node name="character_template" instance=ExtResource("1_1gmyd")]
+script = ExtResource("2_pldcg")
+hp = 1.0
+impact_damage = 0.0
+
+[node name="collision_detector" parent="." index="0"]
+position = Vector2(0, 0.799999)
+scale = Vector2(1, 0.96875)
+
+[node name="sprite" type="AnimatedSprite2D" parent="." index="1"]

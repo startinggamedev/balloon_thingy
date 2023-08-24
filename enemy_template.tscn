@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxcqig7dsvk0a"]
+
+[ext_resource type="Script" path="res://character_template.gd" id="1_penll"]
+
+[node name="enemy_template"]
+script = ExtResource("1_penll")
+
+[node name="collision_detector" parent="." index="0"]
+polygon = PackedVector2Array(0, -66.8903, 16, 0, 0, 16, -16, 0)
