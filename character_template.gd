@@ -5,7 +5,7 @@ extends "res://physics_template.gd"
 @export var impact_damage = 0.
 # state machine functions
 func default_state():
-	return
+	return 
 func dead_state():
 	speed = lerp(speed,Vector2(-5.,10.),0.1)
 # state machine manager functions
@@ -13,6 +13,7 @@ func death():
 	if hp <= 0:
 		current_state = "dead_state"
 func run_state(): # run the states
+	set_delta()
 	death()
 	return call(states[current_state])
 func _process(delta):
