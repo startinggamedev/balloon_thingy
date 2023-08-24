@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdkcj6qf1ufdu"]
+
+[ext_resource type="PackedScene" uid="uid://x1i5bx3nxjxx" path="res://templates/bodies/physics_template.tscn" id="1_7njsw"]
+[ext_resource type="Script" path="res://character_template.gd" id="1_nbjrd"]
+
+[node name="character_template" instance=ExtResource("1_7njsw")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_nbjrd")
+hp = 1.0
+impact_damage = 0.0
+
+[node name="collision_detector" parent="." index="0"]
+polygon = PackedVector2Array(16, -16, 16, 16, -16, 16, -16, -16)
+
+[node name="sprite" type="AnimatedSprite2D" parent="." index="1"]

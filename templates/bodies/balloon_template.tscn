@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7sxj0i34rvx6"]
+
+[ext_resource type="PackedScene" uid="uid://cdkcj6qf1ufdu" path="res://templates/bodies/character_template.tscn" id="1_afuig"]
+[ext_resource type="Script" path="res://balloon_template.gd" id="2_ao8hr"]
+
+[node name="balloon_template" instance=ExtResource("1_afuig")]
+script = ExtResource("2_ao8hr")
+thrust = 0.155
+air_fric = 0.1

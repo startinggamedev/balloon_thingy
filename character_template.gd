@@ -18,24 +18,3 @@ func run_state(): # run the states
 func _process(delta):
 	run_state()
 	run_physics_states()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

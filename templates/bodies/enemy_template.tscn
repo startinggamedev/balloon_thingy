@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://crty0r2fk0wyv"]
+
+[ext_resource type="PackedScene" uid="uid://cdkcj6qf1ufdu" path="res://templates/bodies/character_template.tscn" id="1_qw830"]
+[ext_resource type="Script" path="res://templates/bodies/enemy_template.gd" id="2_ewb2g"]
+
+[node name="enemy_template" instance=ExtResource("1_qw830")]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("2_ewb2g")

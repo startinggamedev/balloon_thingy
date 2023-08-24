@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://x1i5bx3nxjxx"]
 
-[ext_resource type="Script" path="res://physics_template.gd" id="1_gss6j"]
+[ext_resource type="Script" path="res://physics_template.gd" id="1_a41yl"]
 
 [node name="physics_template" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 4
-script = ExtResource("1_gss6j")
+script = ExtResource("1_a41yl")
 
 [node name="collision_detector" type="CollisionPolygon2D" parent="."]
 build_mode = 1
