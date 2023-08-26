@@ -13,9 +13,7 @@ func set_speed():
 func normal_state():
 	set_cursor_angle()
 	set_speed()
-	global_position += speed
 func _ready():
-	print(min_air_fric)
 	states["normal_state"] = "normal_state"
 	current_state = "normal_state"
 func _process(delta):

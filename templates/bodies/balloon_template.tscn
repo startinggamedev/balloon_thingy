@@ -7,9 +7,15 @@
 collision_layer = 1
 collision_mask = 4
 script = ExtResource("2_ao8hr")
-thrust = 0.155
+thrust = 0.2
+impact_damage = 1.0
 air_fric = 0.03
-min_air_fric = 0.008
+min_air_fric = 0.004
+max_air_fric = 0.02
 
 [node name="collision_detector" parent="." index="0"]
 polygon = PackedVector2Array(16, -16, 24, 0, 16, 16, 0, 24, -16, 16, -24, 0, -16, -16, 0, -24)
+
+[node name="damage_detector" parent="." index="2"]
+collision_layer = 0
+collision_mask = 2

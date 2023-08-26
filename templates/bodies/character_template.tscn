@@ -14,3 +14,11 @@ impact_damage = 0.0
 polygon = PackedVector2Array(16, -16, 16, 16, -16, 16, -16, -16)
 
 [node name="sprite" type="AnimatedSprite2D" parent="." index="1"]
+
+[node name="damage_detector" type="Area2D" parent="." index="2"]
+
+[node name="damage_collision_box" type="CollisionPolygon2D" parent="damage_detector" index="0"]
+modulate = Color(0, 0, 1, 0.501961)
+polygon = PackedVector2Array(16, 0, 0, 16, -16, 0, 0, -16)
+
+[connection signal="body_entered" from="damage_detector" to="." method="_on_damage_detector_body_entered"]

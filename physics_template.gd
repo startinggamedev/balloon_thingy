@@ -27,18 +27,18 @@ func collision(): #collide
 	move_and_slide()
 func manage_speed(): #move the body
 	prev_global_position = global_position
-	global_position += speed
+	global_position += speed * delta_60
 func physics_return(): #what the physics states functions will return
 	return global_position - prev_global_position
 func manage_air_friction():
 	if !air_fric: return
-	real_air_friction = air_fric * speed.length() * speed.length()
-	real_air_friction = clamp(real_air_friction,min_air_fric,max_air_fric)
+	real_air_friction = air_fric * speed.length() * speed.length() * delta_60
+	real_air_friction = clamp(real_air_friction,min_air_fric/delta_60,max_air_fric/delta_60)
 	if !is_on_floor():
 		if speed.length() < abs(real_air_friction):
 			speed = Vector2(0.,0.)
 		else:
-			speed -= speed.normalized() * delta_60 * real_air_friction
+			speed -= speed.normalized() * real_air_friction
 #non state physics functions
 func set_delta():
 	delta_60 = get_process_delta_time() * 60.
