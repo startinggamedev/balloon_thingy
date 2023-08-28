@@ -1,4 +1,6 @@
 extends "res://character_template.gd"
+#delta debuging
+@onready var mytimer = 0.
 #onready variables
 @onready var cursor_angle = Vector2(0.,0.)
 #export vars
@@ -8,7 +10,13 @@ func set_cursor_angle():
 	cursor_angle = (globals.mouse_pos - global_position).normalized() * -1.
 func set_speed():
 	if(Input.is_action_pressed("left_mouse")):
-		speed += cursor_angle * thrust * delta_60
+		speed +=  thrust * delta_60 * cursor_angle 
+#debugging
+func debug_delta():
+	mytimer += delta_60
+	if global_position.y >= 2000.:
+		print(mytimer)
+		global_position.y = 0.
 #states
 func normal_state():
 	set_cursor_angle()
@@ -17,5 +25,4 @@ func _ready():
 	states["normal_state"] = "normal_state"
 	current_state = "normal_state"
 func _process(delta):
-	run_state()
-	run_physics_states()
+	default_process()

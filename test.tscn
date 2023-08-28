@@ -1,13 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://bch6yqld0fgwh"]
+[gd_scene load_steps=6 format=3 uid="uid://bch6yqld0fgwh"]
 
 [ext_resource type="PackedScene" uid="uid://b7sxj0i34rvx6" path="res://templates/bodies/balloon_template.tscn" id="3_7n0vt"]
 [ext_resource type="PackedScene" uid="uid://bap4bymypsa8p" path="res://cursor_manager.tscn" id="3_7y6o2"]
+[ext_resource type="PackedScene" uid="uid://crty0r2fk0wyv" path="res://templates/bodies/enemy_template.tscn" id="3_crxp4"]
+[ext_resource type="PackedScene" uid="uid://cw035s8a61t2k" path="res://templates/bodies/shooter_template.tscn" id="4_1t7im"]
+[ext_resource type="PackedScene" uid="uid://c5ivigf83jdl3" path="res://templates/bodies/projectile_template.tscn" id="5_4lrax"]
 
 [node name="test" type="Node2D"]
 
 [node name="balloon_template" parent="." instance=ExtResource("3_7n0vt")]
 position = Vector2(280, 72)
+scale = Vector2(1, 1)
 thrust = 0.1
 
+[node name="enemy_template" parent="." instance=ExtResource("3_crxp4")]
+position = Vector2(176, 48)
+scale = Vector2(1, 1)
+
+[node name="shooter" parent="." instance=ExtResource("4_1t7im")]
+position = Vector2(408, 96)
+
 [node name="cursor_manager" parent="." instance=ExtResource("3_7y6o2")]
-position = Vector2(136, 88)
+position = Vector2(320, 48)
+
+[node name="projectile_template" parent="." instance=ExtResource("5_4lrax")]
+position = Vector2(112, 136)
+scale = Vector2(1, 1)

@@ -11,7 +11,6 @@ func set_cursor_angle():
 func set_speed():
 	if(Input.is_action_pressed("left_mouse")):
 		speed += (cursor_angle/cursor_angle) * thrust * delta_60
-
 #physics
 
 	position += speed
