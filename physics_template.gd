@@ -1,12 +1,12 @@
 extends CharacterBody2D
 #onready vars
-@onready var delta_60 = null
+@onready var delta_60 = globals.get_delta_60()
 @onready var speed = Vector2(0.,0.)
 @onready var prev_global_position
 @onready var real_air_friction = speed
 #direction vars
 @onready var direction = 0.
-@onready var direction_velocity = 0.
+@export var direction_velocity = 0.
 @onready var direction_velocity_acceleration = 0.
 @onready var angular_velocity = 0
 #physics states vars

@@ -10,6 +10,7 @@ extends "res://physics_template.gd"
 @onready var damage_states = {"damageable" = "damageable","iframe" = "iframe"}
 @onready var current_damage_state = "damageable"
 @onready var colliding_damagers = null
+@onready var colliding_damager_to_check = 0
 @onready var iframe_timer = 0.
 #export vars
 @export var damage_knockback = 0.
@@ -25,15 +26,15 @@ extends "res://physics_template.gd"
 @export var target_scale_speed = Vector2(0.0333,0.0333)
 #rotation
 @export var extra_rotation = 0. #is gonna be added to the direction, contributing to the final rotation
-@export var rotation_speed = 1. #is gonna be addeded to extraa rotation
+@export var rotation_speed = 0. #is gonna be addeded to extraa rotation
 #drawing functions
 func set_draw_rotation():
 	extra_rotation += rotation_speed* delta_60
-	rotation = deg_to_rad(direction + rotation_speed)
+	rotation = deg_to_rad(direction + extra_rotation)
 func set_alpha(target,reach_speed):
 	sprite.modulate.a = move_toward(sprite.modulate.a,target_alpha,reach_speed * delta_60)
 func set_draw_scale(target,reach_speed):
-	scale = Vector2(move_toward(scale.x,target_scale.x,reach_speed.x),move_toward(scale.y,target_scale.y,reach_speed.y))
+	scale = Vector2(move_toward(scale.x,target_scale.x,reach_speed.x * delta_60),move_toward(scale.y,target_scale.y,reach_speed.y * delta_60))
 #drawing function manager
 func run_draw_functions():
 	set_alpha(target_alpha,target_alpha_speed)
@@ -48,7 +49,7 @@ func dead_state():
 func damageable():
 	colliding_damagers = damage_detector.get_overlapping_bodies()
 	if colliding_damagers: 
-		hp -=colliding_damagers[0].impact_damage
+		hp -=colliding_damagers[colliding_damager_to_check].impact_damage
 		apply_damage_knockback()
 		if iframe_length > 0.:
 			current_damage_state = "iframe"
@@ -61,7 +62,8 @@ func iframe():
 func run_damage_state():
 	return call(damage_states[current_damage_state])
 func apply_damage_knockback():
-	speed += (colliding_damagers[0].global_position - global_position).normalized() * -damage_knockback 
+	if colliding_damagers[colliding_damager_to_check].current_state != "dead_state":
+		speed += (colliding_damagers[colliding_damager_to_check].global_position - global_position).normalized() * -damage_knockback
 # state machine manager functions
 func death():
 	if hp <= 0:
@@ -79,5 +81,4 @@ func default_process():
 func _process(delta):
 	default_process()
 
-func _on_damage_detector_body_entered(body):
-	run_damage_state()
+

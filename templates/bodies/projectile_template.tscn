@@ -4,9 +4,8 @@
 [ext_resource type="Script" path="res://templates/bodies/projectile_template.gd" id="2_rvy3e"]
 
 [node name="projectile_template" instance=ExtResource("1_gxbox")]
-scale = Vector2(1, 1)
 script = ExtResource("2_rvy3e")
-impact_damage = 0.0
+direction_velocity = 1.0
 min_air_fric = 0.0
 
 [node name="collision_detector" parent="." index="0"]
@@ -14,7 +13,6 @@ polygon = PackedVector2Array(16, -8, 16, 8, -16, 8, -16, -8)
 
 [node name="sprite" parent="." index="1"]
 scale = Vector2(1, 1)
-sprite_frames = null
 
 [node name="damage_collision_box" parent="damage_detector" index="0"]
 polygon = PackedVector2Array(16, 0, 0, 8, -16, 0, 0, -8)
