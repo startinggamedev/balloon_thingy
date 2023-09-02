@@ -1,20 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7sxj0i34rvx6"]
+[gd_scene load_steps=5 format=3 uid="uid://b7sxj0i34rvx6"]
 
 [ext_resource type="PackedScene" uid="uid://cdkcj6qf1ufdu" path="res://templates/bodies/character_template.tscn" id="1_afuig"]
 [ext_resource type="Script" path="res://balloon_template.gd" id="2_ao8hr"]
+[ext_resource type="Resource" uid="uid://cg8bto70xufpm" path="res://resources/custom resources/damage/default_damage_resource.tres" id="3_sleut"]
+[ext_resource type="Resource" uid="uid://coqjt6kpp1lmy" path="res://resources/custom resources/physics/friction/default_air_friction_resource.tres" id="3_xveo1"]
 
 [node name="balloon_template" groups=["balloon_group"] instance=ExtResource("1_afuig")]
 collision_layer = 1
 collision_mask = 4
 script = ExtResource("2_ao8hr")
-thrust = 0.2
-damage_knockback = 4.0
-hp = 2.0
-impact_damage = 1.0
-iframe_length = 30.0
-air_fric = 0.03
-min_air_fric = 0.004
-max_air_fric = 0.08
+thrust = 0.1
+damage_res = ExtResource("3_sleut")
+air_fric_resource = ExtResource("3_xveo1")
 
 [node name="collision_detector" parent="." index="0"]
 polygon = PackedVector2Array(16, -16, 24, 0, 16, 16, 0, 24, -16, 16, -24, 0, -16, -16, 0, -24)

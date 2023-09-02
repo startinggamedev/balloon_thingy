@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5ivigf83jdl3"]
+[gd_scene load_steps=4 format=3 uid="uid://c5ivigf83jdl3"]
 
 [ext_resource type="PackedScene" uid="uid://crty0r2fk0wyv" path="res://templates/bodies/enemy_template.tscn" id="1_gxbox"]
 [ext_resource type="Script" path="res://templates/bodies/projectile_template.gd" id="2_rvy3e"]
+[ext_resource type="Resource" uid="uid://cg8bto70xufpm" path="res://resources/custom resources/damage/default_damage_resource.tres" id="3_2d2ch"]
 
 [node name="projectile_template" instance=ExtResource("1_gxbox")]
 script = ExtResource("2_rvy3e")
-direction_velocity = 1.0
-min_air_fric = 0.0
+damage_res = ExtResource("3_2d2ch")
 
 [node name="collision_detector" parent="." index="0"]
 polygon = PackedVector2Array(16, -8, 16, 8, -16, 8, -16, -8)

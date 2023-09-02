@@ -13,6 +13,7 @@ extends Node2D
 @onready var states = {"shooting" = "shooting","cooldown" = "cooldown"}
 @onready var aiming_states = {"enemy_aim" = "enemy_aim","mouse_aim" = "mouse_aim","random_aim" = "random_aim"}
 #export
+@export var max_aiming_distance = INF
 @export var current_aiming_state = "enemy_aim"
 @export var aim_time = 60.
 @export var cooldown_time = 60
@@ -64,7 +65,7 @@ func cooldown():
 		change_state("shooting")
 #aim states functions
 func enemy_aim():
-	shooting_direction = rad_to_deg((globals.get_nearest_node(get_tree().get_nodes_in_group("balloon_group"),global_position).global_position - global_position).angle())
+	shooting_direction = globals.get_nearest_node_in_group_angle("balloon_group",global_position,max_aiming_distance)
 func mouse_aim():
 	shooting_direction = globals.get_cursor_angle_degrees(global_position)
 func random_aim():

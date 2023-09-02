@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="health_resource" load_steps=2 format=3 uid="uid://cvgyvaqkqc44f"]
+
+[ext_resource type="Script" path="res://resources/custom resources/health/health_resource.gd" id="1_qpbia"]
+
+[resource]
+script = ExtResource("1_qpbia")
+defense = inf
+hp = inf

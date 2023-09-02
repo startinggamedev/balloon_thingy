@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="direction_resource" load_steps=2 format=3 uid="uid://6rlty5ahqlqy"]
+
+[ext_resource type="Script" path="res://resources/custom resources/physics/direction/direction_resource.gd" id="1_45hs7"]
+
+[resource]
+script = ExtResource("1_45hs7")
+direction_velocity = 0.0
+direction = 0.0
+direction_velocity_acceleration = 0.0
+angular_velocity = 0.0

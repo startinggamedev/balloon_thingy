@@ -22,6 +22,7 @@ func normal_state():
 	set_cursor_angle()
 	set_speed()
 func _ready():
+	default_ready()
 	states["normal_state"] = "normal_state"
 	current_state = "normal_state"
 func _process(delta):

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="scale_resource" load_steps=2 format=3 uid="uid://b0htpsofpj53j"]
+
+[ext_resource type="Script" path="res://resources/custom resources/transform/scale/scale_resource.gd" id="1_mxunu"]
+
+[resource]
+script = ExtResource("1_mxunu")
+scale = Vector2(0, 0)
+target_scale = Vector2(1, 1)
+target_scale_speed = Vector2(0.016, 0.016)

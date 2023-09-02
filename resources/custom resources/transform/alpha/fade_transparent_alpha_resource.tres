@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="alpha_resource" load_steps=2 format=3 uid="uid://c7j0rlp65eob2"]
+
+[ext_resource type="Script" path="res://resources/custom resources/transform/alpha/alpha_resource.gd" id="1_c5rfg"]
+
+[resource]
+script = ExtResource("1_c5rfg")
+alpha = 0.0
+target_alpha = 0.5
+target_alpha_speed = 0.016

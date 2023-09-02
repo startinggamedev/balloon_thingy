@@ -1,21 +1,24 @@
 extends CharacterBody2D
+#variable resources
+@export var air_fric_resource = Resource
+@export var dir_resource = Resource
 #onready vars
 @onready var delta_60 = globals.get_delta_60()
 @onready var speed = Vector2(0.,0.)
 @onready var prev_global_position
 @onready var real_air_friction = speed
 #direction vars
-@onready var direction = 0.
-@export var direction_velocity = 0.
-@onready var direction_velocity_acceleration = 0.
-@onready var angular_velocity = 0
+@onready var direction_velocity = dir_resource.direction_velocity
+@onready var direction = dir_resource.direction
+@onready var direction_velocity_acceleration = dir_resource.direction_velocity_acceleration
+@onready var angular_velocity = dir_resource.angular_velocity
 #physics states vars
 @onready var physics_states = {"normal_physics" : "normal_physics","intangible_physics" : "intangible_physics"}
 @onready var current_physics_state = "normal_physics"
-#export vars
-@export var air_fric = 0.
-@export var min_air_fric = 0.
-@export var max_air_fric = INF
+#air friction vars
+@onready var air_fric = air_fric_resource.air_fric
+@onready var min_air_fric = air_fric_resource.min_air_fric
+@onready var max_air_fric = air_fric_resource.max_air_fric
 # functions
 #physics states
 func normal_physics(): #normal

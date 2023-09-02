@@ -1,22 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdkcj6qf1ufdu"]
+[gd_scene load_steps=8 format=3 uid="uid://cdkcj6qf1ufdu"]
 
 [ext_resource type="PackedScene" uid="uid://x1i5bx3nxjxx" path="res://templates/bodies/physics_template.tscn" id="1_7njsw"]
 [ext_resource type="Script" path="res://character_template.gd" id="1_nbjrd"]
+[ext_resource type="Resource" uid="uid://bb86if8dnp8m4" path="res://resources/custom resources/transform/alpha/default_alpha_resource.tres" id="3_osb8x"]
+[ext_resource type="Resource" uid="uid://dfteqqojjrdji" path="res://resources/custom resources/transform/scale/default_scale_resource.tres" id="4_r3bhs"]
+[ext_resource type="Resource" uid="uid://taj4kd35l3l6" path="res://resources/custom resources/transform/rotation/rotating_resource.tres" id="5_d53f0"]
+[ext_resource type="Resource" uid="uid://bormdh0xhrcq6" path="res://resources/custom resources/damage/harmless_damage_resource.tres" id="6_1c5pc"]
+[ext_resource type="Resource" uid="uid://g6iciqxjrqgw" path="res://resources/custom resources/health/default_health_resource.tres" id="7_2v663"]
 
 [node name="character_template" instance=ExtResource("1_7njsw")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_nbjrd")
-damage_knockback = 0.0
-hp = 1.0
-impact_damage = 0.0
-iframe_length = 0.0
-target_alpha = 1
-target_alpha_speed = 0.033
-target_scale = Vector2(1, 1)
-target_scale_speed = Vector2(0.0333, 0.0333)
-extra_rotation = 0.0
-rotation_speed = 0.0
+alpha_res = ExtResource("3_osb8x")
+scale_res = ExtResource("4_r3bhs")
+rotation_res = ExtResource("5_d53f0")
+damage_res = ExtResource("6_1c5pc")
+health_res = ExtResource("7_2v663")
 
 [node name="collision_detector" parent="." index="0"]
 polygon = PackedVector2Array(16, -16, 16, 16, -16, 16, -16, -16)

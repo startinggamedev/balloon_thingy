@@ -1,11 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://x1i5bx3nxjxx"]
+[gd_scene load_steps=4 format=3 uid="uid://x1i5bx3nxjxx"]
 
 [ext_resource type="Script" path="res://physics_template.gd" id="1_a41yl"]
+[ext_resource type="Resource" uid="uid://dt0t2nhkdcfca" path="res://resources/custom resources/physics/friction/no_air_friction_resource.tres" id="2_mkxkh"]
+[ext_resource type="Resource" uid="uid://6rlty5ahqlqy" path="res://resources/custom resources/physics/direction/zero_direction_resource.tres" id="2_qyswo"]
 
 [node name="physics_template" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_a41yl")
+air_fric_resource = ExtResource("2_mkxkh")
+dir_resource = ExtResource("2_qyswo")
 
 [node name="collision_detector" type="CollisionPolygon2D" parent="."]
 build_mode = 1

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="rotation_resource" load_steps=2 format=3 uid="uid://btoeu3ana2amq"]
+
+[ext_resource type="Script" path="res://resources/custom resources/transform/rotation/rotation_resource.gd" id="1_kivub"]
+
+[resource]
+script = ExtResource("1_kivub")
+extra_rotation = 0.0
+rotation_speed = 0.0

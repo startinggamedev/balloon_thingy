@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="damage_resource" load_steps=2 format=3 uid="uid://cant66gqracpx"]
+
+[ext_resource type="Script" path="res://resources/custom resources/damage/damage_resource.gd" id="1_c8e8i"]
+
+[resource]
+script = ExtResource("1_c8e8i")
+weight = 1.0
+hp = 0.0
+impact_damage = inf
+defense = 0.0
+iframe_length = 0.0

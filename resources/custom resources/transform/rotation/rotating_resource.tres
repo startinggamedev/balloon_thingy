@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="rotation_resource" load_steps=2 format=3 uid="uid://taj4kd35l3l6"]
+
+[ext_resource type="Script" path="res://resources/custom resources/transform/rotation/rotation_resource.gd" id="1_da5ij"]
+
+[resource]
+script = ExtResource("1_da5ij")
+extra_rotation = 0.0
+rotation_speed = 1.0

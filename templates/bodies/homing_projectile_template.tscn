@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://crog0rmrv2anf"]
+
+[ext_resource type="PackedScene" uid="uid://c5ivigf83jdl3" path="res://templates/bodies/projectile_template.tscn" id="1_0ma3n"]
+[ext_resource type="Script" path="res://templates/bodies/homing_projectile_template.gd" id="2_omcyh"]
+
+[node name="homing_projectile_template" instance=ExtResource("1_0ma3n")]
+script = ExtResource("2_omcyh")
+max_homing_distance = inf
+
+[node name="damage_collision_box" parent="damage_detector" index="0"]
+polygon = PackedVector2Array(16, 0, 16, 8, -16, 0, -16, -8)
