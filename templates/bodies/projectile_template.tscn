@@ -1,12 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5ivigf83jdl3"]
+[gd_scene load_steps=6 format=3 uid="uid://c5ivigf83jdl3"]
 
 [ext_resource type="PackedScene" uid="uid://crty0r2fk0wyv" path="res://templates/bodies/enemy_template.tscn" id="1_gxbox"]
 [ext_resource type="Script" path="res://templates/bodies/projectile_template.gd" id="2_rvy3e"]
 [ext_resource type="Resource" uid="uid://cg8bto70xufpm" path="res://resources/custom resources/damage/default_damage_resource.tres" id="3_2d2ch"]
+[ext_resource type="Resource" uid="uid://g6iciqxjrqgw" path="res://resources/custom resources/health/default_health_resource.tres" id="4_b8l14"]
+[ext_resource type="Resource" uid="uid://6rlty5ahqlqy" path="res://resources/custom resources/physics/direction/zero_direction_resource.tres" id="5_6k1w5"]
 
 [node name="projectile_template" instance=ExtResource("1_gxbox")]
 script = ExtResource("2_rvy3e")
 damage_res = ExtResource("3_2d2ch")
+health_res = ExtResource("4_b8l14")
+dir_resource = ExtResource("5_6k1w5")
 
 [node name="collision_detector" parent="." index="0"]
 polygon = PackedVector2Array(16, -8, 16, 8, -16, 8, -16, -8)

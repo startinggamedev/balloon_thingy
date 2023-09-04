@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="speed_resource" load_steps=2 format=3 uid="uid://bdyb74flajbu3"]
+
+[ext_resource type="Script" path="res://resources/custom resources/physics/speed/speed_resource.gd" id="1_0hpwg"]
+
+[resource]
+script = ExtResource("1_0hpwg")
+acceleration = 0.1

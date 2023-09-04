@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_o4gl5")
-air_fric = 0.03
+air_fric = 0.1
 min_air_fric = 0.004
 max_air_fric = 0.08

@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bch6yqld0fgwh"]
+[gd_scene load_steps=6 format=3 uid="uid://bch6yqld0fgwh"]
 
 [ext_resource type="PackedScene" uid="uid://cdkcj6qf1ufdu" path="res://templates/bodies/character_template.tscn" id="2_dncfs"]
 [ext_resource type="PackedScene" uid="uid://bap4bymypsa8p" path="res://cursor_manager.tscn" id="3_7y6o2"]
+[ext_resource type="PackedScene" uid="uid://b7sxj0i34rvx6" path="res://templates/bodies/balloon_template.tscn" id="3_23vr0"]
+[ext_resource type="Resource" uid="uid://g6iciqxjrqgw" path="res://resources/custom resources/health/default_health_resource.tres" id="4_271fy"]
+[ext_resource type="Resource" uid="uid://6rlty5ahqlqy" path="res://resources/custom resources/physics/direction/zero_direction_resource.tres" id="5_bfxq5"]
 
 [node name="test" type="Node2D"]
 
@@ -10,3 +13,10 @@ position = Vector2(320, 48)
 
 [node name="character_template" parent="." instance=ExtResource("2_dncfs")]
 position = Vector2(168, 48)
+
+[node name="balloon_template" parent="." instance=ExtResource("3_23vr0")]
+position = Vector2(280, 72)
+max_thrust = 0.0
+thrust = 0.1
+health_res = ExtResource("4_271fy")
+dir_resource = ExtResource("5_bfxq5")

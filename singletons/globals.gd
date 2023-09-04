@@ -1,5 +1,6 @@
 extends Node
 #global vars
+var i = 0.
 var n = 1.
 var nearest_node = null
 var return_vector = Vector2(0.,0.)
@@ -17,6 +18,8 @@ func get_random_angle():
 	return randf_range(0.,360.)
 func get_cursor_angle_vector(comparision_position,scale):
 	return (globals.mouse_pos - comparision_position).normalized() * scale
+func get_points_angle_vector(center_point,external_point):
+	return (external_point - center_point).normalized()
 func get_points_angle(center_point,external_point):
 	return rad_to_deg((external_point - center_point).angle())
 func get_cursor_angle_degrees(comparision_position):
@@ -37,3 +40,11 @@ func get_nearest_node_in_group(group,comparision_position,max_search_distance):
 	return get_nearest_node(get_tree().get_nodes_in_group(group),comparision_position,max_search_distance)
 func get_nearest_node_in_group_angle(group,comparision_position,max_search_distance):
 	return get_points_angle(comparision_position,globals.get_nearest_node_in_group(group,comparision_position,max_search_distance).global_position)
+#math
+func clamp_vector(Vector,min_length,max_length):
+	if Vector.length() > max_length:
+		return Vector.normalized() * max_length
+	elif Vector.length() < min_length:
+		return Vector.normalized() * min_length
+	else:
+		return Vector

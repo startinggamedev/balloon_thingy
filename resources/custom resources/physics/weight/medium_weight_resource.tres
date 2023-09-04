@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="weight_resource" load_steps=2 format=3 uid="uid://ctacy2l80g2q0"]
+
+[ext_resource type="Script" path="res://resources/custom resources/physics/weight/weight_resource.gd" id="1_pdyob"]
+
+[resource]
+script = ExtResource("1_pdyob")
+weight = 2.0
