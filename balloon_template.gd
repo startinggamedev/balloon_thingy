@@ -36,3 +36,5 @@ func _ready():
 	add_speed_dict_entry(["thrust"])
 func _process(delta):
 	default_process()
+func _physics_process(delta):
+	default_physics_process()

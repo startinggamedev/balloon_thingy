@@ -24,7 +24,6 @@ extends "res://physics_template.gd"
 @onready var colliding_damagers = null
 @onready var colliding_damager_to_check = 0.
 @onready var current_collider_damager = null
-@onready var previous_collider_damager = null
 
 func set_damage_vars():
 	impact_damage = damage_res.impact_damage
@@ -75,7 +74,7 @@ func run_draw_functions():
 func default_state():
 	return 
 func dead_state():
-	speed = globals.delta_lerp(speed,Vector2(-5.,10.),0.1,delta_60)
+	set_linear_speed("dead_speed",acceleration,Vector2(0,1),0.,100.,true)
 #damage functions
 func take_damage(base_damage : float,defense_effectiviness):
 	hp -= base_damage - (defense * defense_effectiviness)
@@ -84,31 +83,26 @@ func damageable():
 	if current_collider_damager: 
 		take_damage(current_collider_damager.impact_damage,1)
 		if iframe_length > 0.:
+			bumpable = false
 			current_damage_state = "iframe"
 func iframe():
 	iframe_timer += delta_60
 	if iframe_timer >= iframe_length:
 		iframe_timer = 0.
+		bumpable = true
 		current_damage_state = "damageable"
 #damage state machine functions
-func get_damage_knockback_value():
-	return current_collider_damager.speed.length() * -1 * globals.get_points_angle_vector(global_position,current_collider_damager.global_position) * (current_collider_damager.weight/weight)
+#func get_damage_knockback_value():
+#	return current_collider_damager.speed.length() * -1 * globals.get_points_angle_vector(global_position,current_collider_damager.global_position) * (current_collider_damager.weight/weight)
 func run_damage_state(): 
 	colliding_damagers = damage_detector.get_overlapping_bodies()
 	if colliding_damagers: current_collider_damager = colliding_damagers[colliding_damager_to_check]
-	apply_damage_knockback()
-	previous_collider_damager = current_collider_damager
+	call(damage_states[current_damage_state])
 	current_collider_damager = null
-	return call(damage_states[current_damage_state])
-func apply_damage_knockback():
-	if current_collider_damager:
-		if current_collider_damager.current_state != "dead_state":
-			if current_collider_damager != previous_collider_damager:
-				print(current_collider_damager)
-				add_extra_speed_point(get_damage_knockback_value())
 # state machine manager functions
 func death():
 	if hp <= 0:
+		bumpable = false
 		current_state = "dead_state"
 func run_state(): # run the states
 	set_delta()
@@ -122,15 +116,16 @@ func default_ready():
 	set_alpha_vars()
 	set_damage_vars()
 	set_health_vars()
-	add_speed_dict_entry("damage_knockback")
+	add_speed_dict_entry(["damage_knockback","dead_speed"])
+	set_collision_polygons()
 func default_process():
 	run_state()
-	run_physics_states()
 	run_damage_state()
 	run_draw_functions()
 func _ready():
 	default_ready()
 func _process(delta):
 	default_process()
-
+func _physics_process(delta):
+	default_physics_process()
 

@@ -112,6 +112,7 @@ left_mouse={
 2d_physics/layer_1="balloon"
 2d_physics/layer_2="enemies"
 2d_physics/layer_3="collision"
+2d_physics/layer_4="forces"
 
 [rendering]
 

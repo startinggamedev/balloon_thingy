@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4skgq50r0vpl"]
+
+[ext_resource type="PackedScene" uid="uid://cf5lsawt5o4kg" path="res://templates/motion force field/motion_force_field_template.tscn" id="1_jjjxx"]
+[ext_resource type="Script" path="res://templates/motion force field/attraction_field.gd" id="2_wha6x"]
+
+[node name="attraction_field" instance=ExtResource("1_jjjxx")]
+script = ExtResource("2_wha6x")
+current_motion_force_type = "attraction"
+motion_force_scale = 1.0
+motion_direction = 0.0

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://mk4nlqoam1x6"]
+
+[ext_resource type="PackedScene" uid="uid://cf5lsawt5o4kg" path="res://templates/motion force field/motion_force_field_template.tscn" id="1_6r6h5"]
+[ext_resource type="Script" path="res://templates/motion force field/directional_force_field.gd" id="2_v8uwo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_im2ob"]
+size = Vector2(64, 48)
+
+[node name="motion_force_field_template" instance=ExtResource("1_6r6h5")]
+script = ExtResource("2_v8uwo")
+motion_force_scale = 1.0
+motion_direction = 0.0
+
+[node name="field_area" parent="." index="0"]
+position = Vector2(-32, 0)
+shape = SubResource("RectangleShape2D_im2ob")
