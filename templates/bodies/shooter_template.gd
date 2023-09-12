@@ -1,5 +1,6 @@
 extends Node2D
 #onready
+@onready var bullets_this_frame = 0.
 @onready var shooter_timer = 0.
 @onready var delta_60 = null
 @onready var current_state = "shooting"
@@ -13,6 +14,7 @@ extends Node2D
 @onready var states = {"shooting" = "shooting","cooldown" = "cooldown"}
 @onready var aiming_states = {"enemy_aim" = "enemy_aim","mouse_aim" = "mouse_aim","random_aim" = "random_aim"}
 #export
+@export var max_bullet_per_frame = 0.
 @export var max_aiming_distance = INF
 @export var current_aiming_state = "enemy_aim"
 @export var aim_time = 60.
@@ -22,25 +24,43 @@ extends Node2D
 @export var is_rechargeable = true
 @export var projectiles_angle_dif = 0.
 @export var projectile_angle_offset = 0.
+@export var shooting_type = {"auto_shoot" = "auto_shoot","mouse_shoot" = "mouse_shoot"}
+@export var current_shooting_type = "auto_shoot"
 #functions
+#shooting type
+func time_condition():
+	if shooter_timer >= (aim_time/ammo) * max_bullet_per_frame:
+		return true
+	else: return false
+func auto_shoot():
+	if time_condition():
+		return true
+	else: return false
+func mouse_shoot():
+	if Input.is_action_pressed(globals.shooting_key) and time_condition():
+		return true
+	else: return false
 func reset_is_projectile_shot():
 	is_projectile_shot.fill(false)
 func increase_timer():
 	shooter_timer += delta_60
-func set_up_projectile():
+func set_up_projectile(bullet_index):
 	projectile_instance = projectile.instantiate()
-	add_child(projectile_instance)
-	projectile_instance.direction = shooting_direction + (projectiles_angle_dif * (n -1)) + projectile_angle_offset
+	get_parent().add_sibling(projectile_instance)
+	projectile_instance.global_position = global_position
+	projectile_instance.direction = shooting_direction + (projectiles_angle_dif * (bullet_index)) + projectile_angle_offset - (0.5 * projectiles_angle_dif * (max_bullet_per_frame - 1))
 	projectile_instance.run_draw_functions()
 func shoot_projectile():
-	while n <= ammo:
-		if ((shooter_timer/aim_time) * ammo) >= n:
-			if not is_projectile_shot[n - 1]:
-				run_aiming_states()
-				is_projectile_shot[n-1] = true
-				set_up_projectile()
-		n+=1
-	n = 1.
+	run_aiming_states()
+	for n in ammo:
+		if call(current_shooting_type) and not is_projectile_shot[n]:
+			if bullets_this_frame < max_bullet_per_frame :
+				is_projectile_shot[n] = true
+				set_up_projectile(bullets_this_frame)
+				bullets_this_frame+=1
+				if bullets_this_frame >= max_bullet_per_frame:
+					shooter_timer = 0.
+	bullets_this_frame = 0.
 func set_delta():
 	delta_60 = globals.get_delta_60()
 #state machine manager functions
@@ -56,7 +76,7 @@ func run_aiming_states():
 func shooting():
 	increase_timer()
 	shoot_projectile()
-	if shooter_timer >= aim_time: 
+	if is_projectile_shot[len(is_projectile_shot) - 1]: 
 		change_state("cooldown")
 		reset_is_projectile_shot()
 func cooldown():

@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://templates/bodies/enemy_template.gd" id="2_ewb2g"]
 
 [node name="enemy_template" groups=["enemy_group"] instance=ExtResource("1_qw830")]
-collision_layer = 2
-collision_mask = 4
 script = ExtResource("2_ewb2g")
 
-[node name="damage_detector" parent="." index="2"]
-collision_layer = 0
+[node name="damage_collision_box" parent="damage_detector" index="0"]
+position = Vector2(-1.43051e-06, 5.6)
+scale = Vector2(1.875, 1.4375)
+polygon = PackedVector2Array(8.53334, -3.89565, 0, 8, -8.53333, -3.89565, 7.6294e-07, -15.0261)

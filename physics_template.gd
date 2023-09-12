@@ -35,12 +35,10 @@ extends CharacterBody2D
 @onready var current_physics_state = "normal_physics"
 #air friction vars
 @onready var air_fric = air_fric_resource.air_fric
-@onready var min_air_fric = air_fric_resource.min_air_fric
-@onready var max_air_fric = air_fric_resource.max_air_fric
 #speed var
 @onready var acceleration = spd_res.acceleration
 #weight var
-@onready var bumpable = true
+@export var bumpable = true
 @onready var weight = weight_res.weight
 #colliding bodies vars
 @onready var colliding_bodies = null
@@ -53,7 +51,6 @@ extends CharacterBody2D
 #physics states
 func normal_physics(): #normal
 	get_colliding_body()
-	set_angle_speed()
 	apply_bump()
 	apply_motion_forces()
 	manage_speed()
@@ -61,9 +58,12 @@ func normal_physics(): #normal
 	return physics_return()
 func intangible_physics(): #intangible
 	manage_speed()
+	move()
 	return physics_return()
 #physics states functions
 #speed managers 
+func move():
+	global_position += speed
 func add_extra_speed_point(extra_speed):
 	speed_point += extra_speed
 func add_speed_dict_entry(dict_entry_array):
@@ -89,6 +89,7 @@ func manage_air_friction(base_speed):
 		return Vector2(0.,0.) 
 	return base_speed - base_speed.normalized() * air_fric * delta_60
 func manage_speed(): #move the body
+	set_angle_speed()
 	prev_global_position = global_position
 	#linear
 	speed = Vector2(0.,0.)

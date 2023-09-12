@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="air_friction_resource" load_steps=2 format=3 uid="uid://2vetc4oo4nva"]
+
+[ext_resource type="Script" path="res://resources/custom resources/physics/friction/air_friction_resource.gd" id="1_2xu8c"]
+
+[resource]
+script = ExtResource("1_2xu8c")
+air_fric = 0.05
+min_air_fric = 0.004
+max_air_fric = 0.08

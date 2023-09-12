@@ -17,6 +17,7 @@ scale_res = ExtResource("4_r3bhs")
 rotation_res = ExtResource("5_d53f0")
 damage_res = ExtResource("6_tpyrm")
 health_res = ExtResource("7_53hqn")
+current_death_condition = "hp_death_condition"
 dir_resource = ExtResource("9_2dwtl")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." index="1"]

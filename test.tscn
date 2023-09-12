@@ -1,14 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://bch6yqld0fgwh"]
+[gd_scene load_steps=6 format=3 uid="uid://bch6yqld0fgwh"]
 
+[ext_resource type="PackedScene" uid="uid://bap4bymypsa8p" path="res://cursor_manager.tscn" id="3_7y6o2"]
 [ext_resource type="PackedScene" uid="uid://b7sxj0i34rvx6" path="res://templates/bodies/balloon_template.tscn" id="3_23vr0"]
-[ext_resource type="PackedScene" uid="uid://cdkcj6qf1ufdu" path="res://templates/bodies/character_template.tscn" id="5_20qhl"]
-[ext_resource type="Resource" uid="uid://bormdh0xhrcq6" path="res://resources/custom resources/damage/harmless_damage_resource.tres" id="6_qly6a"]
+[ext_resource type="PackedScene" uid="uid://dpmj0se3e2eyd" path="res://enemy_spawner.tscn" id="4_pifp8"]
+[ext_resource type="PackedScene" uid="uid://crty0r2fk0wyv" path="res://templates/bodies/enemy_template.tscn" id="6_nnwvq"]
+[ext_resource type="PackedScene" uid="uid://cvjgg37shxhb4" path="res://projectiles/balloon_projectile_template.tscn" id="7_ipi0g"]
 
 [node name="test" type="Node2D"]
 
 [node name="balloon_template" parent="." instance=ExtResource("3_23vr0")]
-position = Vector2(120, 72)
+position = Vector2(144, 56)
 
-[node name="character_template" parent="." instance=ExtResource("5_20qhl")]
-position = Vector2(120, 72)
-damage_res = ExtResource("6_qly6a")
+[node name="enemy_spawner" parent="." instance=ExtResource("4_pifp8")]
+position = Vector2(184, 40)
+
+[node name="cursor_manager" parent="." instance=ExtResource("3_7y6o2")]
+position = Vector2(144, 112)
+
+[node name="enemy_template" parent="." instance=ExtResource("6_nnwvq")]
+position = Vector2(120, 24)
+
+[node name="projectile_template" parent="." instance=ExtResource("7_ipi0g")]
+position = Vector2(136, 24)
+current_death_condition = "hp_death_condition"

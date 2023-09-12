@@ -7,6 +7,7 @@ var return_vector = Vector2(0.,0.)
 var screen_dimensions = Vector2(427.,240.)
 var priority = [-1,0,1,2]
 var mouse_pos = Vector2(0.,0.)
+var shooting_key = "right_mouse"
 #global functions
 #delta functions
 func delta_lerp(a,b,c,delta_60):

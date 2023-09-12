@@ -9,7 +9,7 @@ extends "res://character_template.gd"
 @export var thrust_max : float
 #functions
 func set_cursor_angle():
-	cursor_angle = globals.get_cursor_angle_vector(global_position,-1.)
+	cursor_angle = globals.get_cursor_angle_vector(global_position,1.)
 func set_speed():
 	if(Input.is_action_pressed("left_mouse")):
 		current_thrust += thrust  * cursor_angle * delta_60

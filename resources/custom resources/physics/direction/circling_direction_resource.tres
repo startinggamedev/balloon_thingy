@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_c2dxb")
-direction_velocity = 0.0
-direction = 1.0
+direction_velocity = 1.0
+direction = 0.0
 direction_velocity_acceleration = 0.0
 angular_velocity = 0.0
