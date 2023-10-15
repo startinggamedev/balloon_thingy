@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://x1i5bx3nxjxx"]
 
 [ext_resource type="Script" path="res://physics_template.gd" id="1_a41yl"]
-[ext_resource type="Resource" uid="uid://6rlty5ahqlqy" path="res://resources/custom resources/physics/direction/zero_direction_resource.tres" id="2_qyswo"]
-[ext_resource type="Resource" uid="uid://coqjt6kpp1lmy" path="res://resources/custom resources/physics/friction/default_air_friction_resource.tres" id="2_t4c4g"]
+[ext_resource type="Resource" uid="uid://6rlty5ahqlqy" path="res://resources/custom resources/physics/direction/zero_direction_resource.tres" id="2_0nnn5"]
+[ext_resource type="Resource" uid="uid://dt0t2nhkdcfca" path="res://resources/custom resources/physics/friction/no_air_friction_resource.tres" id="2_t6hpk"]
 [ext_resource type="Resource" uid="uid://bdyb74flajbu3" path="res://resources/custom resources/physics/speed/default_speed_resource.tres" id="4_lysqj"]
 [ext_resource type="Resource" uid="uid://ctacy2l80g2q0" path="res://resources/custom resources/physics/weight/medium_weight_resource.tres" id="5_a6xxg"]
 
@@ -10,8 +10,8 @@
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_a41yl")
-air_fric_resource = ExtResource("2_t4c4g")
-dir_resource = ExtResource("2_qyswo")
+dir_res = ExtResource("2_0nnn5")
+air_fric_resource = ExtResource("2_t6hpk")
 spd_res = ExtResource("4_lysqj")
 weight_res = ExtResource("5_a6xxg")
 

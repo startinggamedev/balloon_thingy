@@ -1,13 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5ivigf83jdl3"]
+[gd_scene load_steps=8 format=3 uid="uid://c5ivigf83jdl3"]
 
 [ext_resource type="PackedScene" uid="uid://crty0r2fk0wyv" path="res://templates/bodies/enemy_template.tscn" id="1_gxbox"]
 [ext_resource type="Script" path="res://templates/bodies/projectile_template.gd" id="2_rvy3e"]
-[ext_resource type="Resource" uid="uid://6rlty5ahqlqy" path="res://resources/custom resources/physics/direction/zero_direction_resource.tres" id="5_6k1w5"]
+[ext_resource type="Texture2D" uid="uid://ev8g71nr31v2" path="res://sprites/default_bullet_sprite.png" id="4_4o6rc"]
+[ext_resource type="Resource" uid="uid://ctcbumk25d76r" path="res://resources/custom resources/physics/direction/default_bullet_direction_resource.tres" id="4_i3b15"]
+[ext_resource type="Resource" uid="uid://coqjt6kpp1lmy" path="res://resources/custom resources/physics/friction/default_air_friction_resource.tres" id="5_6e8pi"]
+[ext_resource type="Resource" uid="uid://taj4kd35l3l6" path="res://resources/custom resources/transform/rotation/rotating_resource.tres" id="5_g3tr7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5rbmh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_4o6rc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="projectile_template" instance=ExtResource("1_gxbox")]
+collision_layer = 6
 script = ExtResource("2_rvy3e")
+rotation_res = ExtResource("5_g3tr7")
 current_death_condition = "death_when_attacking"
-dir_resource = ExtResource("5_6k1w5")
+dir_res = ExtResource("4_i3b15")
+air_fric_resource = ExtResource("5_6e8pi")
+
+[node name="collision_polygon" parent="." index="0"]
+polygon = PackedVector2Array(0, -4, 4, 0, 0, 4, -4, 0)
 
 [node name="sprite" parent="." index="1"]
 scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_5rbmh")
+
+[node name="damage_collision_box" parent="damage_detector" index="0"]
+polygon = PackedVector2Array(2.13333, -3.89565, 7.62939e-07, -1.11304, -2.13333, -3.89565, 7.62939e-07, -6.67826)

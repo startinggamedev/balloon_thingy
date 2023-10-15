@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="direction_resource" load_steps=2 format=3 uid="uid://ctcbumk25d76r"]
+
+[ext_resource type="Script" path="res://resources/custom resources/physics/direction/direction_resource.gd" id="1_wtkfs"]
+
+[resource]
+script = ExtResource("1_wtkfs")
+target_direction_velocity = 1.0
+direction = 0.0
+direction_velocity_acceleration = 0.1
+angular_velocity = 0.0

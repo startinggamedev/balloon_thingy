@@ -12,6 +12,7 @@ extends "res://physics_template.gd"
 @onready var sprite = $sprite
 #onready vars
 #state machine vars
+@onready var state_timer = {}
 @onready var states = {"dead_state" : "dead_state","default_state" : "default_state"}
 @onready var current_state = "default_state"
 #damage vars
@@ -58,9 +59,9 @@ func set_draw_scale_vars():
 @onready var extra_rotation = 0. #is gonna be added to the direction, contributing to the final rotation
 @onready var rotation_speed = 0. #is gonna be addeded to extra rotation
 func set_rotation_vars():
-	extra_rotation  = rotation_res.extra_rotation
-	rotation_speed = rotation_res.rotation_speed
-#drawing functions
+		extra_rotation  = rotation_res.extra_rotation
+		rotation_speed = rotation_res.rotation_speed
+#drawing functions"alpha_res"
 func set_draw_rotation():
 	extra_rotation += rotation_speed* delta_60
 	rotation = deg_to_rad(direction + extra_rotation)
@@ -79,7 +80,7 @@ func run_draw_functions():
 func default_state():
 	return 
 func dead_state():
-	set_linear_speed("dead_speed",acceleration,Vector2(0,1),0.,100.,true)
+	set_linear_speed("dead_speed",spd_res.acceleration,Vector2(0,1),0.,100.,true)
 #damage functions
 func take_damage(base_damage : float,defense_effectiviness):
 	hp -= base_damage - (defense * defense_effectiviness)
@@ -127,8 +128,19 @@ func death():
 		bumpable = false
 		current_state = "dead_state"
 func run_state(): # run the states
-	set_delta()
 	return call(states[current_state])
+func switch_state(next_state : String):
+	current_state = next_state
+func switch_state_timer(time_limit,next_state):
+	if not state_timer.has(current_state): #check if current state has a corresponding timer 
+		state_timer[current_state] = 0. #create one if it doesnt
+	state_timer[current_state] += 1. * delta_60
+	if state_timer[current_state] >= time_limit:
+		state_timer[current_state] = 0.
+		switch_state(next_state)
+		return true
+	else:
+		return false
 #func default processes
 func default_ready():
 	#set drawing vars
@@ -140,9 +152,11 @@ func default_ready():
 	add_speed_dict_entry(["damage_knockback","dead_speed"])
 	set_collision_polygons()
 func default_process():
+	set_process_delta()
 	run_state()
 	run_damage_state()
 	run_draw_functions()
+	set_physics_delta()
 func _ready():
 	default_ready()
 func _process(delta):

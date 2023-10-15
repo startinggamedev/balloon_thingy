@@ -1,10 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://cw035s8a61t2k"]
+[gd_scene load_steps=3 format=3 uid="uid://dimtv77g1sx0k"]
 
+[ext_resource type="PackedScene" uid="uid://cdkcj6qf1ufdu" path="res://templates/bodies/character_template.tscn" id="1_bfcyc"]
 [ext_resource type="Script" path="res://templates/bodies/shooter_template.gd" id="1_n6tlt"]
-[ext_resource type="PackedScene" uid="uid://crog0rmrv2anf" path="res://templates/bodies/homing_projectile_template.tscn" id="2_rt5he"]
 
-[node name="shooter" type="Node2D"]
+[node name="character_template" instance=ExtResource("1_bfcyc")]
 script = ExtResource("1_n6tlt")
-aim_time = 0.0
-projectile = ExtResource("2_rt5he")
-ammo = 3.0
+ammo = 0
+ammo_size = 0
+projectile = null
+shot_spacing = 0.0
+reload_time = 0.0

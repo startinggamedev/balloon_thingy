@@ -2,18 +2,32 @@
 
 [ext_resource type="PackedScene" uid="uid://cdkcj6qf1ufdu" path="res://templates/bodies/character_template.tscn" id="1_afuig"]
 [ext_resource type="Script" path="res://balloon_template.gd" id="2_ao8hr"]
-[ext_resource type="Resource" uid="uid://2vetc4oo4nva" path="res://resources/custom resources/physics/friction/balloon_air_friction_resource.tres" id="3_e7p8l"]
-[ext_resource type="Resource" uid="uid://6rlty5ahqlqy" path="res://resources/custom resources/physics/direction/zero_direction_resource.tres" id="5_qoyd4"]
-[ext_resource type="PackedScene" uid="uid://cw035s8a61t2k" path="res://templates/bodies/shooter_template.tscn" id="5_vqmw6"]
-[ext_resource type="PackedScene" uid="uid://cvjgg37shxhb4" path="res://projectiles/balloon_projectile_template.tscn" id="6_a87n1"]
+[ext_resource type="Resource" uid="uid://coqjt6kpp1lmy" path="res://resources/custom resources/physics/friction/default_air_friction_resource.tres" id="4_jqohh"]
+[ext_resource type="Texture2D" uid="uid://bk7fd4mg30vus" path="res://sprites/balloon.png" id="5_iyeqi"]
+[ext_resource type="PackedScene" uid="uid://xk5bsuy67j8x" path="res://templates/test/test_player_shooter.tscn" id="6_jccny"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w03xp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_iyeqi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="balloon_template" groups=["balloon_group"] instance=ExtResource("1_afuig")]
 collision_layer = 5
 script = ExtResource("2_ao8hr")
 thrust = 0.1
 thrust_max = 3.0
-air_fric_resource = ExtResource("3_e7p8l")
-dir_resource = ExtResource("5_qoyd4")
+air_fric_resource = ExtResource("4_jqohh")
+
+[node name="sprite" parent="." index="1"]
+position = Vector2(0.499999, 0.499999)
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_w03xp")
 
 [node name="damage_detector" parent="." index="2"]
 collision_mask = 2
@@ -21,11 +35,9 @@ collision_mask = 2
 [node name="damage_collision_box" parent="damage_detector" index="0"]
 polygon = PackedVector2Array(16, 0, 0, 16, -16, 0, 0, -16)
 
-[node name="shooter" parent="." index="5" instance=ExtResource("5_vqmw6")]
-max_bullet_per_frame = 2.0
-current_aiming_state = "mouse_aim"
-aim_time = 20.0
-cooldown_time = 10
-projectile = ExtResource("6_a87n1")
-ammo = 2.0
-projectiles_angle_dif = 30.0
+[node name="shooter" parent="." index="5" instance=ExtResource("6_jccny")]
+max_bullet_per_frame = 3.0
+aim_time = 60.0
+cooldown_time = 30
+ammo = 12.0
+projectiles_angle_dif = 10.0

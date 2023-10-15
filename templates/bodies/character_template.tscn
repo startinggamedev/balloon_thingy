@@ -1,24 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://cdkcj6qf1ufdu"]
+[gd_scene load_steps=8 format=3 uid="uid://cdkcj6qf1ufdu"]
 
 [ext_resource type="PackedScene" uid="uid://x1i5bx3nxjxx" path="res://templates/bodies/physics_template.tscn" id="1_7njsw"]
 [ext_resource type="Script" path="res://character_template.gd" id="1_nbjrd"]
-[ext_resource type="Resource" uid="uid://bb86if8dnp8m4" path="res://resources/custom resources/transform/alpha/default_alpha_resource.tres" id="3_osb8x"]
+[ext_resource type="Resource" uid="uid://bb86if8dnp8m4" path="res://resources/custom resources/transform/alpha/default_alpha_resource.tres" id="3_qb6xp"]
+[ext_resource type="Resource" uid="uid://btoeu3ana2amq" path="res://resources/custom resources/transform/rotation/no_rotation_resource.tres" id="4_5j3he"]
 [ext_resource type="Resource" uid="uid://dfteqqojjrdji" path="res://resources/custom resources/transform/scale/default_scale_resource.tres" id="4_r3bhs"]
-[ext_resource type="Resource" uid="uid://taj4kd35l3l6" path="res://resources/custom resources/transform/rotation/rotating_resource.tres" id="5_d53f0"]
 [ext_resource type="Resource" uid="uid://cg8bto70xufpm" path="res://resources/custom resources/damage/default_damage_resource.tres" id="6_tpyrm"]
 [ext_resource type="Resource" uid="uid://g6iciqxjrqgw" path="res://resources/custom resources/health/default_health_resource.tres" id="7_53hqn"]
-[ext_resource type="Resource" uid="uid://dto18enaqvs3m" path="res://resources/custom resources/physics/direction/circling_direction_resource.tres" id="9_2dwtl"]
 
 [node name="character_template" instance=ExtResource("1_7njsw")]
 collision_layer = 2
 script = ExtResource("1_nbjrd")
-alpha_res = ExtResource("3_osb8x")
+alpha_res = ExtResource("3_qb6xp")
 scale_res = ExtResource("4_r3bhs")
-rotation_res = ExtResource("5_d53f0")
+rotation_res = ExtResource("4_5j3he")
 damage_res = ExtResource("6_tpyrm")
 health_res = ExtResource("7_53hqn")
 current_death_condition = "hp_death_condition"
-dir_resource = ExtResource("9_2dwtl")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." index="1"]
 scale = Vector2(1, 0.5)

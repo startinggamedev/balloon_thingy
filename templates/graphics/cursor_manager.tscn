@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqgi77civm03o"]
+
+[ext_resource type="Texture2D" uid="uid://4j4btsqm3fsf" path="res://sprites/mouse.png" id="1_plapa"]
+[ext_resource type="Script" path="res://templates/graphics/cursor_manager.gd" id="1_rhrdr"]
+
+[node name="cursor_manager" type="Node2D"]
+script = ExtResource("1_rhrdr")
+
+[node name="cursor_manager" type="Sprite2D" parent="."]
+texture = ExtResource("1_plapa")
