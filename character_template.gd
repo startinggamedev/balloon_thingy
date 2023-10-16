@@ -13,7 +13,7 @@ extends "res://physics_template.gd"
 #onready vars
 #state machine vars
 @onready var state_timer = {}
-@onready var states = {"dead_state" : "dead_state","default_state" : "default_state"}
+@export var states = {"dead_state" : "dead_state","default_state" : "default_state"}
 @onready var current_state = "default_state"
 #damage vars
 #state machine vars

@@ -71,14 +71,14 @@ func add_speed_dict_entry(dict_entry_array):
 		linear_speed_dict[dict_entry_array[i]] = Vector2(0.,0.)
 func add_extra_speed(extra_speed):
 		speed_linear += extra_speed
-func set_linear_speed(speed_dict_entry,accel,direction,minimum,maximum,is_accelerating):
+func set_linear_speed(speed_dict_entry,accel,direction,minimum,maximum,is_accelerating,smoothing = 0.):
 	if is_accelerating:
-		linear_speed_dict[speed_dict_entry] += accel  * direction * delta_60
+		# the direction of the linear speed vector, the angle aceleration corresponds to the weight of the direction argument
+		#the angle vector mutiplied the length of the speed plus aceleration
+		linear_speed_dict[speed_dict_entry] += accel * delta_60 * direction
 	else:
 		linear_speed_dict[speed_dict_entry] = manage_air_friction(linear_speed_dict[speed_dict_entry])
-	linear_speed_dict[speed_dict_entry] = globals.clamp_vector(linear_speed_dict[speed_dict_entry],minimum,INF)
-	if linear_speed_dict[speed_dict_entry].length() > maximum:
-		linear_speed_dict[speed_dict_entry] = linear_speed_dict[speed_dict_entry].move_toward(linear_speed_dict[speed_dict_entry].normalized() * maximum,accel * delta_60)
+	linear_speed_dict[speed_dict_entry] = globals.clamp_vector(linear_speed_dict[speed_dict_entry],minimum,maximum)
 	add_extra_speed(linear_speed_dict[speed_dict_entry])
 func set_angle_speed():
 	direction += angular_velocity * delta_60

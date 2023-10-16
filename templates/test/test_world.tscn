@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlrujj7707b03"]
+
+[ext_resource type="PackedScene" uid="uid://cng64i2gpqk1t" path="res://templates/bodies/player_template.tscn" id="1_g7faf"]
+[ext_resource type="PackedScene" uid="uid://d0ecshfsb8v4j" path="res://templates/graphics/camera_template.tscn" id="2_n1fo2"]
+[ext_resource type="PackedScene" uid="uid://dimtv77g1sx0k" path="res://templates/bodies/shooter_template.tscn" id="3_r7mj5"]
+
+[node name="test_world" type="Node2D"]
+
+[node name="character_template" parent="." instance=ExtResource("1_g7faf")]
+position = Vector2(110, 90)
+
+[node name="camera_manager" parent="." instance=ExtResource("2_n1fo2")]
+position = Vector2(220, 160)
+
+[node name="character_template2" parent="." instance=ExtResource("3_r7mj5")]
+position = Vector2(70, 40)

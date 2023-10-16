@@ -50,6 +50,9 @@ func clamp_radian(radian,mini,maxi):
 	if mini > radian: print({"mini" = mini, "maxi" = maxi,"radian" = radian})
 	radian = clamp(radian,mini,maxi)
 	return radian
+#get distance function
+func get_cursor_distance(comparision_position):
+	return (mouse_pos - comparision_position).length()
 #get nearest functions
 func get_nearest_node(node_list,comparision_position,max_search_distance):
 	nearest_node = node_list[0]

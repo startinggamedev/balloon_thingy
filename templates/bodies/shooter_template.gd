@@ -32,5 +32,4 @@ func run_states():
 func set_delta_60():
 	delta_60 = globals.get_delta_60()
 func _process(delta):
-	set_delta_60()
-	run_states()
+	default_process()

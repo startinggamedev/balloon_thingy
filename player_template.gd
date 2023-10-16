@@ -12,14 +12,15 @@ func set_cursor_angle():
 	cursor_angle = globals.get_cursor_angle_vector(global_position,1.)
 #physics logic states
 func balloon_physics():
-	set_linear_speed("thrust",thrust,cursor_angle,0.,thrust_max,Input.is_action_pressed("left_mouse"))
+	var thrust_speed = globals.get_cursor_distance(global_position)
+	thrust_speed = clamp(thrust_speed,0.,thrust_max)
+	set_linear_speed("thrust",thrust,cursor_angle,0.,thrust_speed,Input.is_action_pressed("left_mouse"),0.9)
 #process states
 func normal_state():
 	set_cursor_angle()
 func _ready():
 	current_physics_logic_state = "balloon_physics"
 	default_ready()
-	states["normal_state"] = "normal_state"
 	current_state = "normal_state"
 	add_speed_dict_entry(["thrust"])
 func _process(delta):

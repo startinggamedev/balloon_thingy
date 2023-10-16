@@ -4,8 +4,5 @@
 
 [resource]
 script = ExtResource("1_fvk7g")
-weight = 1.0
-hp = 1.0
-impact_damage = 1.0
-defense = 0.0
+impact_damage = 0.0
 iframe_length = 0.0
