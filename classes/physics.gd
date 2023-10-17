@@ -149,8 +149,8 @@ func line_wandering(point1,point2,pos,max_line_speed):
 	var projected_line = pos.project(line)
 	if (line - pos).length() > max_line_speed:
 		line = (line * 0.2 + projected_line * 0.8)
-	line = globals.clamp_vector(line - pos,0.,2.)
-	add_extra_speed(line)#set_linear_speed("line_wandering",accel,Vector2(cos(point1.angle_to_point(point2)),sin(point1.angle_to_point(point2))),0,target_speed,is_accelerating)
+	line = globals.clamp_vector(line - pos,0.,max_line_speed)
+	add_extra_speed(line)
 #state machine managers
 func run_physics_logic_states():
 	if current_physics_logic_state != "":

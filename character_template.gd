@@ -1,3 +1,4 @@
+class_name character_template
 extends "res://physics_template.gd"
 #resource vars
 @export var alpha_res = Resource

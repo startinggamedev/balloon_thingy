@@ -28,8 +28,8 @@ func contain_radian_2PI(radian):
 	return fmod(radian,2. * PI)
 func get_random_angle():
 	return randf_range(0.,360.)
-func get_cursor_angle_vector(comparision_position,scale):
-	return (globals.mouse_pos - comparision_position).normalized() * scale
+func get_cursor_angle_vector(comparision_position):
+	return (globals.mouse_pos - comparision_position).normalized()
 func get_points_angle_vector(center_point,external_point):
 	return (external_point - center_point).normalized()
 func get_points_angle(center_point,external_point):
