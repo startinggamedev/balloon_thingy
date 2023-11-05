@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://fh5erhh4pdh7"]
+
+[ext_resource type="Script" path="res://states/physics_process/normal_physics.gd" id="1_lkn0p"]
+
+[node name="normal_physics" type="Node"]
+script = ExtResource("1_lkn0p")

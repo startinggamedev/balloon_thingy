@@ -1,4 +1,7 @@
-extends Node2D
-@export var physics_logic = Script
-@export var process_logic = Script
-@export var exit_condition = Script
+class_name state
+extends Node
+@export var actor : Node
+func process(delta_60):
+	pass
+func physics_process(delta_60):
+	pass

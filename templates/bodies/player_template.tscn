@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cdkcj6qf1ufdu" path="res://templates/bodies/character_template.tscn" id="1_unrjx"]
 [ext_resource type="Texture2D" uid="uid://bk7fd4mg30vus" path="res://sprites/balloon.png" id="2_jtn5j"]
 [ext_resource type="Script" path="res://player_template.gd" id="2_sdmm0"]
+[ext_resource type="Resource" uid="uid://bvyh1aih5enp5" path="res://classes/delet_this_as_well.tres" id="3_8phd3"]
 [ext_resource type="Resource" uid="uid://2vetc4oo4nva" path="res://resources/custom resources/physics/friction/player_air_friction_resource.tres" id="3_pt5ky"]
-[ext_resource type="Resource" uid="uid://brssc0y5l6v8i" path="res://resources/states/process/mockup_state.tres" id="3_ujoid"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xucpp"]
 animations = [{
@@ -21,7 +21,7 @@ animations = [{
 script = ExtResource("2_sdmm0")
 thrust = 0.2
 thrust_max = 4.0
-state = ExtResource("3_ujoid")
+_script = ExtResource("3_8phd3")
 air_fric_resource = ExtResource("3_pt5ky")
 
 [node name="sprite" parent="." index="1"]

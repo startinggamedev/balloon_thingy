@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://x1i5bx3nxjxx"]
+[gd_scene load_steps=8 format=3 uid="uid://x1i5bx3nxjxx"]
 
 [ext_resource type="Script" path="res://physics_template.gd" id="1_a41yl"]
 [ext_resource type="Resource" uid="uid://6rlty5ahqlqy" path="res://resources/custom resources/physics/direction/zero_direction_resource.tres" id="2_0nnn5"]
 [ext_resource type="Resource" uid="uid://dt0t2nhkdcfca" path="res://resources/custom resources/physics/friction/no_air_friction_resource.tres" id="2_t6hpk"]
 [ext_resource type="Resource" uid="uid://bdyb74flajbu3" path="res://resources/custom resources/physics/speed/default_speed_resource.tres" id="4_lysqj"]
 [ext_resource type="Resource" uid="uid://ctacy2l80g2q0" path="res://resources/custom resources/physics/weight/medium_weight_resource.tres" id="5_a6xxg"]
+[ext_resource type="PackedScene" uid="uid://divsa3phqjiew" path="res://states/state_manager.tscn" id="6_v7dh2"]
+[ext_resource type="PackedScene" uid="uid://fh5erhh4pdh7" path="res://states/physics_process/normal_physics.tscn" id="7_sn7md"]
 
-[node name="physics_template" type="CharacterBody2D"]
+[node name="physics_body" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("1_a41yl")
@@ -30,3 +32,9 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="motion_force_collision_polygon" type="CollisionPolygon2D" parent="motion_force_detector"]
+
+[node name="physics_manager" parent="." node_paths=PackedStringArray("current_state") instance=ExtResource("6_v7dh2")]
+current_state = NodePath("normal_physics")
+
+[node name="normal_physics" parent="physics_manager" node_paths=PackedStringArray("actor") instance=ExtResource("7_sn7md")]
+actor = NodePath("../..")

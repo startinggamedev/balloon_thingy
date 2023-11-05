@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdkcj6qf1ufdu"]
+[gd_scene load_steps=9 format=3 uid="uid://cdkcj6qf1ufdu"]
 
 [ext_resource type="PackedScene" uid="uid://x1i5bx3nxjxx" path="res://templates/bodies/physics_template.tscn" id="1_7njsw"]
 [ext_resource type="Script" path="res://character_template.gd" id="1_nbjrd"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://dfteqqojjrdji" path="res://resources/custom resources/transform/scale/default_scale_resource.tres" id="4_r3bhs"]
 [ext_resource type="Resource" uid="uid://cg8bto70xufpm" path="res://resources/custom resources/damage/default_damage_resource.tres" id="6_tpyrm"]
 [ext_resource type="Resource" uid="uid://g6iciqxjrqgw" path="res://resources/custom resources/health/default_health_resource.tres" id="7_53hqn"]
+[ext_resource type="Script" path="res://templates/bodies/damage_detector.gd" id="8_bdb18"]
 
 [node name="character_template" instance=ExtResource("1_7njsw")]
 collision_layer = 2
@@ -25,10 +26,10 @@ states = {
 [node name="sprite" type="AnimatedSprite2D" parent="." index="1"]
 
 [node name="damage_detector" type="Area2D" parent="." index="2"]
-collision_layer = 0
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("8_bdb18")
 
 [node name="damage_collision_box" type="CollisionPolygon2D" parent="damage_detector" index="0"]
 modulate = Color(0, 0, 1, 0.501961)
 polygon = PackedVector2Array(8, 0, 0, 8, -8, 0, 0, -8)
-
-[connection signal="body_entered" from="damage_detector" to="." method="_on_damage_detector_body_entered"]

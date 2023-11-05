@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://crty0r2fk0wyv"]
+[gd_scene load_steps=5 format=3 uid="uid://crty0r2fk0wyv"]
 
 [ext_resource type="PackedScene" uid="uid://cdkcj6qf1ufdu" path="res://templates/bodies/character_template.tscn" id="1_qw830"]
 [ext_resource type="Script" path="res://templates/bodies/enemy_template.gd" id="2_ewb2g"]
+[ext_resource type="PackedScene" uid="uid://donf0e2pknggf" path="res://states/state.tscn" id="3_tb4op"]
+[ext_resource type="Script" path="res://states/physics_process/normal_physics.gd" id="4_sxm6l"]
 
 [node name="enemy_template" groups=["enemy_group"] instance=ExtResource("1_qw830")]
 script = ExtResource("2_ewb2g")
@@ -10,3 +12,6 @@ script = ExtResource("2_ewb2g")
 position = Vector2(-1.43051e-06, 5.6)
 scale = Vector2(1.875, 1.4375)
 polygon = PackedVector2Array(8.53334, -3.89565, 0, 8, -8.53333, -3.89565, 7.6294e-07, -15.0261)
+
+[node name="state" parent="physics_manager" index="0" instance=ExtResource("3_tb4op")]
+script = ExtResource("4_sxm6l")

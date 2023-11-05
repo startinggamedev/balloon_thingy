@@ -70,7 +70,7 @@ func add_extra_speed_point(extra_speed):
 func add_speed_dict_entry(dict_entry_array):
 	for i in range(len(dict_entry_array)):
 		linear_speed_dict[dict_entry_array[i]] = Vector2(0.,0.)
-func add_extra_speed(extra_speed):
+func add_extra_speed(extra_speed : Vector2):
 		speed_linear += extra_speed
 func set_linear_speed(speed_dict_entry,accel,direction,minimum,maximum,is_accelerating,smoothing = 0.):
 	if is_accelerating:
@@ -118,39 +118,37 @@ func get_motion_force(motion_force_type):
 		return Vector2(cos(deg_to_rad(colliding_motion_forces[i].motion_direction)),sin(deg_to_rad(colliding_motion_forces[i].motion_direction))) * colliding_motion_forces[i].motion_force_scale
 #wandering function
 func orbit_wandering(orbit_center,orbit_radius,orbit_angle_speed):
-	orbit_angle_speed = deg_to_rad(orbit_angle_speed)
 	var max_orbit_speed = globals.law_of_cosines(orbit_radius,orbit_radius,orbit_angle_speed)
-	var distance_to_orbit_center = global_position - orbit_center
+	var distance_to_orbit_center = globals.clamp_vector(global_position - orbit_center,0.01,INF)
 	var targ_orbit_vector = orbit_center + (distance_to_orbit_center.normalized() * orbit_radius).rotated(orbit_angle_speed)
 	var orbit_speed_to_add = globals.clamp_vector(targ_orbit_vector - global_position,0.,max_orbit_speed)
 	add_extra_speed(orbit_speed_to_add/delta_60)
 func arc_wandering(point1,point2,arc_opening_angle,arc_angle_speed):
+	var point_distance = (point1 - point2).length()
 	arc_angle_speed = deg_to_rad(arc_angle_speed)
-	var p1_p2_arc_ang = point1.angle_to_point(point2)
-	var middle_point_p1p2 = lerp(point1,point2,0.5)
-	var p1_p2_arc_dif = point2 - point1
-	var arc_center_vector = globals.degree_to_vector(90. - arc_opening_angle/2.)
-	arc_center_vector = arc_center_vector * ((p1_p2_arc_dif.length()/2.) /  arc_center_vector.x)
-	arc_center_vector = arc_center_vector.rotated(p1_p2_arc_ang) + point1
-	var distance_to_arc_center = global_position - arc_center_vector 
-	var arc_radius = (arc_center_vector - point1).length()
-	var max_speed = globals.law_of_cosines(arc_radius,arc_radius,arc_angle_speed)
-	var targ_arc_angle = arc_angle_speed * delta_60 + distance_to_arc_center.angle() 
-	targ_arc_angle = globals.radian_to_vector(targ_arc_angle)
-	var targ_arc_orbit_vector = arc_center_vector + targ_arc_angle * arc_radius 
-	if global_position.distance_to(point2) <= max_speed:
-		targ_arc_orbit_vector = point2
-	var speed_to_add = (targ_arc_orbit_vector - global_position)
-	speed_to_add = globals.clamp_vector(speed_to_add,0.,max_speed)
-	add_extra_speed(speed_to_add/delta_60)
+	arc_opening_angle = deg_to_rad(arc_opening_angle)
+	if sign(((point2 - point1).rotated(-TAU*0.25)).dot(global_position - point1)) >= 0.:
+		print("line")
+		var attract_point = null
+		if (point2 - global_position).length() < (point1 - global_position).length():
+			attract_point = point2
+		else: attract_point = point1
+		line_wandering(global_position,attract_point,global_position,1.)
+		return
+	else:
+		print("circle")
+		var arc_height = point_distance * sin((PI - arc_opening_angle) * 0.5)
+		var arc_center = Vector2(point_distance*0.5,arc_height).rotated(point1.angle_to_point(point2)) + point1
+		orbit_wandering(arc_center,(arc_center - point1).length(),arc_angle_speed)
 func line_wandering(point1,point2,pos,max_line_speed):
+	max_line_speed *= delta_60
 	pos -= point1
 	var line = point2 - point1
 	var projected_line = pos.project(line)
 	if (line - pos).length() > max_line_speed:
 		line = (line * 0.2 + projected_line * 0.8)
 	line = globals.clamp_vector(line - pos,0.,max_line_speed)
-	add_extra_speed(line)
+	add_extra_speed(line/delta_60)
 #state machine managers
 func run_physics_logic_states():
 	if current_physics_logic_state != "":
