@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://c3lxb0efg20nx"]
+[gd_scene load_steps=2 format=3 uid="uid://7l7flfw6iuka"]
 
-[ext_resource type="Script" path="res://states/physics_process/normal_physics.gd" id="1_j8mml"]
+[sub_resource type="GDScript" id="GDScript_j33tb"]
+script/source = "class_name normal_physics
+extends physics_state
+var marker = load(\"res://templates/test/marker.tscn\")
+func process(delta_60):
+	pass
+func physics_process(delta_60):
+	print(physics_behaviour)
+"
 
 [node name="normal_physics" type="Node"]
-script = ExtResource("1_j8mml")
+script = SubResource("GDScript_j33tb")

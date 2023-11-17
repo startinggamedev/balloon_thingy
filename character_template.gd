@@ -9,7 +9,6 @@ extends "res://physics_template.gd"
 #export vars
 @export var current_death_condition = "hp_death_condition"
 #children
-@onready var damage_detector = $damage_detector
 @onready var sprite = $sprite
 #onready vars
 #state machine vars
@@ -18,8 +17,6 @@ extends "res://physics_template.gd"
 @onready var current_state = "default_state"
 #damage vars
 #state machine vars
-@onready var damage_states = {"damageable" = "damageable","iframe" = "iframe","undamageable" = "undamageable"}
-@onready var current_damage_state = "damageable"
 @onready var death_condition = {"hp_death_condition" = "hp_death_condition","death_when_attacking" = "death_when_attacking","no_death" = "no_death"}
 #damage vars
 @onready var did_damage = false
@@ -31,10 +28,6 @@ extends "res://physics_template.gd"
 @onready var colliding_damagers = null
 @onready var colliding_damager_to_check = 0.
 @onready var current_collider_damager = null
-
-func set_damage_vars():
-	impact_damage = damage_res.impact_damage
-	iframe_length = damage_res.iframe_length
 #health vars
 @onready var hp = 0.
 @onready var defense = 0.
@@ -80,28 +73,7 @@ func run_draw_functions():
 # state machine functions
 func default_state():
 	return 
-func dead_state():
-	set_linear_speed("dead_speed",spd_res.acceleration,Vector2(0,1),0.,100.,true)
 #damage functions
-func take_damage(base_damage : float,defense_effectiviness):
-	hp -= base_damage - (defense * defense_effectiviness)
-#damage state functions
-func undamageable():
-	pass
-func damageable():
-	if current_collider_damager: 
-		if current_collider_damager.can_damage:
-			current_collider_damager.did_damage = true
-			take_damage(current_collider_damager.impact_damage,1)
-			if iframe_length > 0.:
-				bumpable = false
-				current_damage_state = "iframe"
-func iframe():
-	iframe_timer += delta_60
-	if iframe_timer >= iframe_length:
-		iframe_timer = 0.
-		bumpable = true
-		current_damage_state = "damageable"
 #death conditions
 func no_death():
 	return false
@@ -112,16 +84,6 @@ func death_when_attacking():
 	if did_damage: return true
 	elif not did_damage: return false
 #damage state machine functions
-#func get_damage_knockback_value():
-#return current_collider_damager.speed.length() * -1 * globals.get_points_angle_vector(global_position,current_collider_damager.global_position) * (current_collider_damager.weight/weight)
-func run_damage_state(): 
-	colliding_damagers = damage_detector.get_overlapping_bodies()
-	if colliding_damagers: current_collider_damager = colliding_damagers[colliding_damager_to_check]
-	call(damage_states[current_damage_state])
-	current_collider_damager = null
-	death()
-	#make sure resetting did_damage happens after the death function, else the death_on_attacking condition will break
-	did_damage = false
 # state machine manager functions
 func death():
 	if call(death_condition[current_death_condition]):
@@ -148,14 +110,12 @@ func default_ready():
 	set_rotation_vars()
 	set_draw_scale_vars()
 	set_alpha_vars()
-	set_damage_vars()
 	set_health_vars()
 	add_speed_dict_entry(["damage_knockback","dead_speed"])
 	set_collision_polygons()
 func default_process():
 	set_process_delta()
 	run_state()
-	run_damage_state()
 	run_draw_functions()
 	set_physics_delta()
 func _ready():

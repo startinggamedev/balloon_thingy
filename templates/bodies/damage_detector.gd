@@ -1,6 +1,3 @@
+class_name damage_dealer
 extends Area2D
-@export var health_info = {hp = 10.,
-max_hp = 10.
-
-}
-
+@export var damage_info = Resource

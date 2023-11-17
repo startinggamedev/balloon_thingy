@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="health_resource" load_steps=2 format=3 uid="uid://g6iciqxjrqgw"]
+
+[ext_resource type="Script" path="res://resources/custom resources/health/health_resource.gd" id="1_dyjid"]
+
+[resource]
+script = ExtResource("1_dyjid")
+iframe_length = 10.0
+defense = 0.0
+hp = 1.0
+max_hp = 0.0

@@ -13,7 +13,6 @@ config_version=5
 config/name="ball game"
 run/main_scene="res://templates/test/test_world.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
-run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
@@ -125,10 +124,6 @@ move={
 2d_physics/layer_2="enemies"
 2d_physics/layer_3="collision"
 2d_physics/layer_4="forces"
-
-[physics]
-
-common/physics_ticks_per_second=30
 
 [rendering]
 

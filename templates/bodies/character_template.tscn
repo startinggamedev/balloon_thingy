@@ -1,13 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://cdkcj6qf1ufdu"]
+[gd_scene load_steps=12 format=3 uid="uid://cdkcj6qf1ufdu"]
 
 [ext_resource type="PackedScene" uid="uid://x1i5bx3nxjxx" path="res://templates/bodies/physics_template.tscn" id="1_7njsw"]
 [ext_resource type="Script" path="res://character_template.gd" id="1_nbjrd"]
 [ext_resource type="Resource" uid="uid://bb86if8dnp8m4" path="res://resources/custom resources/transform/alpha/default_alpha_resource.tres" id="3_qb6xp"]
 [ext_resource type="Resource" uid="uid://btoeu3ana2amq" path="res://resources/custom resources/transform/rotation/no_rotation_resource.tres" id="4_5j3he"]
 [ext_resource type="Resource" uid="uid://dfteqqojjrdji" path="res://resources/custom resources/transform/scale/default_scale_resource.tres" id="4_r3bhs"]
-[ext_resource type="Resource" uid="uid://cg8bto70xufpm" path="res://resources/custom resources/damage/default_damage_resource.tres" id="6_tpyrm"]
-[ext_resource type="Resource" uid="uid://g6iciqxjrqgw" path="res://resources/custom resources/health/default_health_resource.tres" id="7_53hqn"]
+[ext_resource type="Resource" uid="uid://cg8bto70xufpm" path="res://resources/custom resources/damage/test_damage_resource.tres" id="6_kqmeq"]
+[ext_resource type="Resource" uid="uid://g6iciqxjrqgw" path="res://resources/custom resources/health/test_health_resource.tres" id="7_ml7ew"]
 [ext_resource type="Script" path="res://templates/bodies/damage_detector.gd" id="8_bdb18"]
+[ext_resource type="Script" path="res://templates/bodies/health_manager.gd" id="9_o8510"]
+[ext_resource type="Script" path="res://templates/bodies/damageable_state.gd" id="10_qchd2"]
+[ext_resource type="Script" path="res://templates/bodies/iframe.gd" id="11_wlrwp"]
 
 [node name="character_template" instance=ExtResource("1_7njsw")]
 collision_layer = 2
@@ -15,8 +18,8 @@ script = ExtResource("1_nbjrd")
 alpha_res = ExtResource("3_qb6xp")
 scale_res = ExtResource("4_r3bhs")
 rotation_res = ExtResource("4_5j3he")
-damage_res = ExtResource("6_tpyrm")
-health_res = ExtResource("7_53hqn")
+damage_res = ExtResource("6_kqmeq")
+health_res = ExtResource("7_ml7ew")
 current_death_condition = "hp_death_condition"
 states = {
 "dead_state": "dead_state",
@@ -25,11 +28,26 @@ states = {
 
 [node name="sprite" type="AnimatedSprite2D" parent="." index="1"]
 
-[node name="damage_detector" type="Area2D" parent="." index="2"]
+[node name="Damage_dealer" type="Area2D" parent="." index="2"]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("8_bdb18")
+damage_info = ExtResource("6_kqmeq")
 
-[node name="damage_collision_box" type="CollisionPolygon2D" parent="damage_detector" index="0"]
+[node name="damage_collision_box" type="CollisionPolygon2D" parent="Damage_dealer" index="0"]
 modulate = Color(0, 0, 1, 0.501961)
 polygon = PackedVector2Array(8, 0, 0, 8, -8, 0, 0, -8)
+
+[node name="bump_detector" parent="." index="3"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="health_manager" type="Node" parent="." index="5" node_paths=PackedStringArray("current_state")]
+script = ExtResource("9_o8510")
+current_state = NodePath("damageable")
+
+[node name="damageable" type="Node" parent="health_manager" index="0"]
+script = ExtResource("10_qchd2")
+
+[node name="iframe" type="Node" parent="health_manager" index="1"]
+script = ExtResource("11_wlrwp")

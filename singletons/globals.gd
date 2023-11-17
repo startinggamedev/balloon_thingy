@@ -1,3 +1,4 @@
+class_name global
 extends Node
 #global vars
 var ping_pong_var = null
@@ -18,13 +19,13 @@ func get_physics_delta_60():
 func get_delta_60():
 	return (get_process_delta_time() * 60.)
 #angle functions
-func radian_to_vector(angle_to_convert):
+static func radian_to_vector(angle_to_convert):
 	return Vector2(cos(angle_to_convert),sin(angle_to_convert))
 func degree_to_vector(degree_to_convert):
 	return Vector2(cos(deg_to_rad(degree_to_convert)),sin(deg_to_rad(degree_to_convert)))
 func contain_angle_360(angle):
 	return fmod(angle,360.)
-func normalize_radian(radian):
+static func normalize_radian(radian):
 	if radian == TAU: return TAU
 	radian = fmod(radian,2. * PI)
 	return fmod(radian + TAU,2. * PI)
@@ -66,10 +67,10 @@ func get_nearest_node_in_group_angle(group,comparision_position,max_search_dista
 		return get_points_angle(comparision_position,my_nearest_node.global_position)
 	else: return null
 #trigonometry
-func law_of_cosines(a,b,theta):
+static func law_of_cosines(a,b,theta):
 	return sqrt((pow(a,2.) + pow(b,2.)) - (2. * b * a * cos(theta)))
 #math
-func clamp_vector(Vector,min_length,max_length):
+static func clamp_vector(Vector,min_length,max_length):
 	if Vector.length() > max_length:
 		return Vector.normalized() * max_length
 	elif Vector.length() < min_length:
